@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaSnap™ — Renew Your Post-Swim Skin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF8F3;
+    --cream-deep:#F2EBE0;
+    --ink:#1C3A35;
+    --ink-soft:#56695F;
+    --aqua:#6FB3AB;
+    --aqua-deep:#3E8F86;
+    --aqua-mist:#D6E9E5;
+    --sand:#E6D5BC;
+    --sand-deep:#C29A6A;
+    --coral:#E0876F;
+    --white:#FFFFFF;
+    --font-display:'Fraunces',Georgia,serif;
+    --font-body:'Hanken Grotesk',-apple-system,sans-serif;
+    --shadow-soft:0 2px 8px rgba(28,58,53,.05),0 18px 50px -18px rgba(28,58,53,.18);
+    --shadow-lift:0 4px 14px rgba(28,58,53,.07),0 30px 70px -25px rgba(28,58,53,.30);
+    --radius:28px;
+    /* ---- product photography (swap any URL to reorder) ---- */
+    --img-hero:url("https://res.cloudinary.com/dbwtszgtb/image/upload/v1780347481/robbie-4xlQ0LrcilQ-unsplash_tyaboy.jpg");
+    --img-ritual:url("https://res.cloudinary.com/dbwtszgtb/image/upload/v1780347481/unsplash-community-utDg4eMIrs8-unsplash_jnzzs4.jpg");
+    --img-feeling:url("https://res.cloudinary.com/dbwtszgtb/image/upload/v1780347482/clay-banks-mCWgrZS9p8g-unsplash_fi7yht.jpg");
+    --img-travel:url("https://res.cloudinary.com/dbwtszgtb/image/upload/v1780347482/getty-images-tP_S5ZpukDY-unsplash_crf343.jpg");
+    --img-science:url("https://res.cloudinary.com/dbwtszgtb/image/upload/v1780347482/pablo-merchan-montes-KBzbdVSKRaI-unsplash_jxna0p.jpg");
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font-body);color:var(--ink);background:var(--cream);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+  .eyebrow{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--aqua-deep);display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--aqua-deep);opacity:.5}
+  .eyebrow.center::before,.eyebrow.light::before{}
+  a{color:inherit;text-decoration:none}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--font-body);font-weight:600;
+    font-size:.98rem;padding:1.02em 1.9em;border-radius:100px;border:none;cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .3s;letter-spacing:.01em}
+  .btn-primary{background:var(--ink);color:var(--cream);box-shadow:0 10px 30px -10px rgba(28,58,53,.5)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(28,58,53,.55);background:#173129}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(28,58,53,.22)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn svg{transition:transform .35s}
+  .btn:hover svg{transform:translateX(4px)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);background:rgba(251,248,243,.78);
+    border-bottom:1px solid rgba(28,58,53,.07)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+  .logo{font-family:var(--font-display);font-size:1.45rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.4em}
+  .logo .drop{width:14px;height:18px;background:var(--aqua-deep);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;display:inline-block}
+  .logo sup{font-size:.5em;color:var(--aqua-deep);font-family:var(--font-body)}
+  .nav-links{display:flex;gap:34px;align-items:center;font-size:.93rem;font-weight:500}
+  .nav-links a.lnk{color:var(--ink-soft);transition:color .25s}
+  .nav-links a.lnk:hover{color:var(--ink)}
+  @media(max-width:760px){.nav-links a.lnk{display:none}}
+
+  /* hero */
+  .hero{position:relative;padding:84px 0 96px;overflow:hidden}
+  .hero::before{content:"";position:absolute;top:-20%;right:-10%;width:70vw;height:70vw;max-width:880px;max-height:880px;
+    background:radial-gradient(circle at 50% 50%,rgba(111,179,171,.30),rgba(111,179,171,0) 62%);z-index:0}
+  .hero::after{content:"";position:absolute;bottom:-30%;left:-15%;width:60vw;height:60vw;max-width:720px;max-height:720px;
+    background:radial-gradient(circle at 50% 50%,rgba(230,213,188,.45),rgba(230,213,188,0) 60%);z-index:0}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  @media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:48px}}
+  .hero h1{font-size:clamp(2.9rem,6.4vw,5rem);margin:24px 0 0}
+  .hero h1 em{font-style:italic;color:var(--aqua-deep)}
+  .hero .lede{font-size:1.18rem;color:var(--ink-soft);max-width:30em;margin:26px 0 0}
+  .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .trust{display:flex;align-items:center;gap:16px;margin-top:34px;font-size:.86rem;color:var(--ink-soft)}
+  .trust .dots{display:flex}
+  .trust .dots span{width:26px;height:26px;border-radius:50%;border:2px solid var(--cream);margin-left:-8px;
+    background:linear-gradient(135deg,var(--aqua),var(--sand-deep))}
+  .trust .dots span:first-child{margin-left:0}
+
+  /* hero photo */
+  .hero-visual{position:relative;aspect-ratio:1/1.12}
+  .hero-photo{position:absolute;inset:0;border-radius:200px 200px 32px 32px;overflow:hidden;
+    background-image:var(--img-hero);background-size:cover;background-position:center;
+    box-shadow:var(--shadow-lift)}
+  .hero-photo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(160deg,rgba(111,179,171,.10),rgba(28,58,53,.18) 88%)}
+  .tag{position:absolute;background:rgba(251,248,243,.92);backdrop-filter:blur(8px);
+    border:1px solid rgba(28,58,53,.06);border-radius:100px;padding:.55em 1em;font-size:.78rem;font-weight:600;
+    color:var(--ink);box-shadow:var(--shadow-soft);display:flex;align-items:center;gap:.5em;white-space:nowrap;
+    animation:bob 6s ease-in-out infinite;z-index:3}
+  .tag i{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .tag.t1{top:9%;left:-6%;animation-delay:0s}
+  .tag.t2{top:44%;right:-9%;animation-delay:-1.5s}
+  .tag.t3{bottom:14%;left:-7%;animation-delay:-3s}
+  .tag.t4{bottom:30%;right:-5%;animation-delay:-4.5s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* launch band */
+  section.launch{padding:30px 0}
+  .band{background:var(--ink);color:var(--cream);border-radius:var(--radius);
+    padding:56px clamp(28px,5vw,72px);position:relative;overflow:hidden}
+  .band::before{content:"";position:absolute;top:-40%;right:-5%;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(111,179,171,.35),transparent 65%)}
+  .band-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  @media(max-width:780px){.band-grid{grid-template-columns:1fr;gap:30px}}
+  .band h2{font-size:clamp(1.9rem,3.6vw,2.7rem);color:var(--cream)}
+  .band p{color:rgba(251,248,243,.72);margin-top:14px;max-width:34em}
+  .band .eyebrow{color:var(--aqua)}.band .eyebrow::before{background:var(--aqua)}
+  .reserve{display:flex;flex-direction:column;gap:12px;min-width:300px}
+  .reserve .field{display:flex;background:rgba(251,248,243,.1);border:1px solid rgba(251,248,243,.2);
+    border-radius:100px;padding:6px 6px 6px 22px;align-items:center}
+  .reserve input{flex:1;background:transparent;border:none;outline:none;color:var(--cream);
+    font-family:var(--font-body);font-size:.96rem;min-width:0}
+  .reserve input::placeholder{color:rgba(251,248,243,.5)}
+  .reserve .btn-primary{background:var(--aqua);color:var(--ink);box-shadow:none;padding:.85em 1.5em;white-space:nowrap}
+  .reserve .btn-primary:hover{background:var(--aqua-mist);transform:translateY(0)}
+  .reserve small{color:rgba(251,248,243,.55);font-size:.78rem;padding-left:8px}
+  .reserve .ok{color:var(--aqua);font-weight:600;display:none;align-items:center;gap:.5em;padding:1em 0}
+
+  /* section base */
+  section{padding:90px 0}
+  .sec-head{max-width:40em}
+  .sec-head h2{font-size:clamp(2.1rem,4.4vw,3.2rem);margin-top:18px}
+  .sec-head p{color:var(--ink-soft);font-size:1.1rem;margin-top:18px}
+
+  /* problem */
+  .problem{background:linear-gradient(180deg,var(--cream),var(--cream-deep))}
+  .problem .quote{font-family:var(--font-display);font-style:italic;font-size:clamp(1.4rem,2.8vw,2rem);
+    line-height:1.35;max-width:18em;color:var(--ink);margin-top:22px}
+  .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  @media(max-width:820px){.prob-grid{grid-template-columns:1fr}}
+  .prob-card{background:var(--white);border-radius:var(--radius);padding:34px 30px;box-shadow:var(--shadow-soft);
+    border:1px solid rgba(28,58,53,.05)}
+  .prob-card .num{font-family:var(--font-display);font-size:1rem;color:var(--aqua-deep);font-weight:600}
+  .prob-card h3{font-size:1.4rem;margin:14px 0 10px}
+  .prob-card p{color:var(--ink-soft);font-size:.98rem}
+
+  /* alternating feature blocks */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:54px 0}
+  @media(max-width:820px){.feature{grid-template-columns:1fr;gap:34px}}
+  .feature.flip .media{order:2}
+  @media(max-width:820px){.feature.flip .media{order:0}}
+  .feature .media{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3.2;position:relative;
+    box-shadow:var(--shadow-lift)}
+  .feature .media .ph{position:absolute;inset:0;background-size:cover;background-position:center;
+    transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+  .feature .media:hover .ph{transform:scale(1.05)}
+  .feature .media::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(140deg,rgba(111,179,171,.16),rgba(230,213,188,.18));mix-blend-mode:multiply;pointer-events:none}
+  .m-ritual{background-image:var(--img-ritual)}
+  .m-feeling{background-image:var(--img-feeling)}
+  .m-travel{background-image:var(--img-travel)}
+  .feature h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:16px}
+  .feature p{color:var(--ink-soft);font-size:1.08rem;margin-top:16px;max-width:30em}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--cream-deep);border-radius:var(--radius);padding:38px 32px;position:relative;
+    transition:transform .4s,box-shadow .4s}
+  .step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+  .step .badge{font-size:.72rem;font-weight:700;letter-spacing:.18em;color:var(--aqua-deep)}
+  .step .ico{width:64px;height:64px;border-radius:20px;background:var(--white);display:flex;align-items:center;
+    justify-content:center;margin:18px 0 20px;box-shadow:var(--shadow-soft)}
+  .step .ico svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .step h3{font-size:1.55rem;margin-bottom:8px}
+  .step p{color:var(--ink-soft);font-size:.96rem}
+  .step .stepnum{position:absolute;top:24px;right:28px;font-family:var(--font-display);font-size:2.4rem;
+    color:rgba(28,58,53,.08);font-weight:600}
+  .highlights{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px}
+  @media(max-width:820px){.highlights{grid-template-columns:1fr}}
+  .hl{display:flex;gap:18px;align-items:flex-start;background:var(--white);border:1px solid rgba(28,58,53,.06);
+    border-radius:var(--radius);padding:26px 28px}
+  .hl .pin{width:46px;height:46px;flex:0 0 46px;border-radius:14px;background:var(--aqua-mist);display:flex;
+    align-items:center;justify-content:center}
+  .hl .pin svg{width:22px;height:22px;stroke:var(--aqua-deep);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .hl h4{font-family:var(--font-display);font-size:1.15rem;font-weight:600;margin-bottom:4px}
+  .hl p{color:var(--ink-soft);font-size:.92rem}
+
+  /* science (photo background) */
+  .science{position:relative;color:var(--cream);overflow:hidden}
+  .science .bg{position:absolute;inset:0;background-image:var(--img-science);background-size:cover;
+    background-position:center;z-index:0}
+  .science .bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(150deg,rgba(28,58,53,.93),rgba(20,42,37,.97))}
+  .science .wrap{position:relative;z-index:2}
+  .science .eyebrow{color:var(--aqua)}.science .eyebrow::before{background:var(--aqua)}
+  .science .sec-head h2{color:var(--cream)}
+  .science .sec-head p{color:rgba(251,248,243,.74)}
+  .sci-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+  @media(max-width:820px){.sci-grid{grid-template-columns:1fr}}
+  .sci{border-top:1px solid rgba(251,248,243,.2);padding-top:26px}
+  .sci .big{font-family:var(--font-display);font-size:2.6rem;font-weight:500;color:var(--aqua)}
+  .sci h3{font-size:1.3rem;color:var(--cream);margin:10px 0 8px}
+  .sci p{color:rgba(251,248,243,.7);font-size:.96rem}
+
+  /* pods */
+  .pods-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+  @media(max-width:820px){.pods-grid{grid-template-columns:1fr}}
+  .pod{border-radius:var(--radius);padding:34px 30px;position:relative;overflow:hidden;
+    border:1px solid rgba(28,58,53,.07);transition:transform .4s,box-shadow .4s}
+  .pod:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+  .pod.p1{background:linear-gradient(160deg,#FCEFE8,#F8E2D6)}
+  .pod.p2{background:linear-gradient(160deg,#E8F2F0,#D6E9E5)}
+  .pod.p3{background:linear-gradient(160deg,#EAF0E4,#DBE7CF)}
+  .pod .disc{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 -4px 10px rgba(0,0,0,.08),0 6px 16px rgba(28,58,53,.12);margin-bottom:20px}
+  .pod.p1 .disc{background:radial-gradient(circle at 35% 30%,#F6B79C,#E0876F)}
+  .pod.p2 .disc{background:radial-gradient(circle at 35% 30%,#9ED4CC,#6FB3AB)}
+  .pod.p3 .disc{background:radial-gradient(circle at 35% 30%,#BAD49A,#8FB36A)}
+  .pod .disc svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .pod h3{font-size:1.4rem;margin-bottom:8px}
+  .pod .sub{font-size:.96rem;color:var(--ink-soft)}
+  .pod .chip{display:inline-block;margin-top:18px;font-size:.74rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,.6);padding:.4em .9em;border-radius:100px}
+
+  /* closing */
+  .closing{text-align:center;padding:110px 0}
+  .closing .wrap{position:relative;z-index:2}
+  .closing h2{font-size:clamp(2.4rem,5.4vw,4rem);max-width:14em;margin:18px auto 0}
+  .closing h2 em{font-style:italic;color:var(--aqua-deep)}
+  .closing p{color:var(--ink-soft);font-size:1.12rem;max-width:34em;margin:24px auto 0}
+  .closing .btn{margin-top:38px}
+
+  /* footer */
+  footer{background:var(--ink);color:rgba(251,248,243,.75);padding:64px 0 40px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;
+    border-bottom:1px solid rgba(251,248,243,.14);padding-bottom:36px}
+  footer .logo{color:var(--cream)}footer .logo .drop{background:var(--aqua)}
+  .foot-tag{max-width:24em;margin-top:14px;font-size:.95rem;color:rgba(251,248,243,.6)}
+  .foot-contact{text-align:right}
+  @media(max-width:680px){.foot-contact{text-align:left}}
+  .foot-contact .label{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua);font-weight:600}
+  .foot-contact a{display:block;color:var(--cream);font-size:1.05rem;margin-top:8px;transition:color .25s}
+  .foot-contact a:hover{color:var(--aqua)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:.84rem}
+  .foot-bottom a{color:rgba(251,248,243,.6)}.foot-bottom a:hover{color:var(--cream)}
+
+  /* ---- responsive / tablet ---- */
+  @media(max-width:820px){
+    section{padding:64px 0}
+    .feature{padding:34px 0}
+    .sec-head p{font-size:1.05rem}
+  }
+
+  /* ---- responsive / phone ---- */
+  @media(max-width:600px){
+    .wrap{padding:0 20px}
+    section{padding:52px 0}
+
+    /* nav */
+    nav .wrap{padding-top:14px;padding-bottom:14px}
+    .logo{font-size:1.2rem}
+    .nav-links .btn-ghost{padding:.65em 1em;font-size:.82rem}
+
+    /* hero */
+    .hero{padding:48px 0 60px}
+    .hero h1{font-size:clamp(2.2rem,8.6vw,3rem)}
+    .hero .lede{font-size:1.05rem;margin-top:22px}
+    .hero .cta-row{gap:10px;margin-top:30px}
+    .hero .cta-row .btn{width:100%;justify-content:center}
+    .hero-visual{aspect-ratio:1/1.05;width:100%;max-width:440px;margin:0 auto}
+    .hero-photo{border-radius:140px 140px 26px 26px}
+    .tag{font-size:.7rem;padding:.45em .85em}
+    .tag.t1{top:5%;left:5%}
+    .tag.t4{bottom:5%;right:5%}
+    .tag.t2,.tag.t3{display:none}
+
+    .btn{padding:.95em 1.6em}
+
+    /* launch band + reservation form */
+    .band{padding:38px 24px}
+    .reserve{min-width:0;width:100%}
+    .reserve .field{flex-wrap:wrap;border-radius:22px;padding:8px 8px 8px 18px;gap:8px}
+    .reserve input{flex:1 1 auto;padding:8px 0}
+    .reserve .btn-primary{flex:1 1 100%;justify-content:center}
+
+    /* sections */
+    .problem .quote{font-size:1.35rem}
+    .prob-card{padding:28px 24px}
+    .step{padding:30px 26px}
+    .sci .big{font-size:2.2rem}
+    .pod{padding:30px 26px}
+    .closing{padding:70px 0}
+    .foot-contact{text-align:left}
+  }
+
+  /* ---- very small phones ---- */
+  @media(max-width:360px){
+    .logo{font-size:1.12rem}
+    .nav-links .btn-ghost{padding:.6em .85em;font-size:.78rem}
+    .hero h1{font-size:2rem}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="drop"></span>SpaSnap<sup>™</sup></a>
+    <div class="nav-links">
+      <a class="lnk" href="#how">How it works</a>
+      <a class="lnk" href="#science">The science</a>
+      <a class="lnk" href="#pods">Pods</a>
+      <a class="btn btn-ghost" href="#reserve">Reserve early access</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Snap · Cinch · Renew</span>
+      <h1>Renew your <em>post-swim</em> skin.</h1>
+      <p class="lede">The ultimate defense against chlorine damage. Turn any locker room or travel shower into an instant post-swim skincare ritual — infusing deep, restorative hydration right at the source, in seconds.</p>
+      <div class="cta-row">
+        <a href="#reserve" class="btn btn-primary">Reserve early access
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="trust">
+        <div class="dots"><span></span><span></span><span></span><span></span></div>
+        <span>Universal, portable &amp; unexpectedly luxurious</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="hero-photo"></div>
+      <span class="tag t1"><i style="background:var(--aqua-deep)"></i>Chlorine neutralizer</span>
+      <span class="tag t2"><i style="background:var(--coral)"></i>Vitamin C</span>
+      <span class="tag t3"><i style="background:var(--sand-deep)"></i>Shea butter &amp; oils</span>
+      <span class="tag t4"><i style="background:var(--aqua)"></i>Moisture-barrier restore</span>
+    </div>
+  </div>
+</header>
+
+<!-- LAUNCH BAND -->
+<section class="launch" id="reserve">
+  <div class="wrap">
+    <div class="band reveal">
+      <div class="band-grid">
+        <div>
+          <span class="eyebrow">Now in launch phase</span>
+          <h2>Shape the future of skincare.</h2>
+          <p>We're building the perfect experience — and want it built around you. Join the club for exclusive pre-launch pricing and first access to early product drops.</p>
+        </div>
+        <div class="reserve">
+          <div class="field" id="resField">
+            <input type="email" id="resEmail" placeholder="you@email.com" aria-label="Email address">
+            <button class="btn btn-primary" id="resBtn" type="button">Join the club</button>
+          </div>
+          <div class="ok" id="resOk">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            You're on the list — early-bird pricing is yours.
+          </div>
+          <small>No spam. Just your launch invite &amp; pre-launch pricing.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / THE HOOK -->
+<section class="problem" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The missing link</span>
+      <p class="quote">Don't just rinse off the chlorine — snap this on and step out of the shower deeply hydrated, refreshed, and fully restored.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card reveal d1">
+        <div class="num">01 — The chlorine bond</div>
+        <h3>It clings to your skin</h3>
+        <p>Harsh pool chemicals chemically bond to your skin. A standard shower can't break that bond on its own — leaving the stubborn "pool smell" and a tight, burning, dry itch.</p>
+      </div>
+      <div class="prob-card reveal d2">
+        <div class="num">02 — The invisible strip</div>
+        <h3>Your barrier gets stripped</h3>
+        <p>Left untreated, chlorine strips away your skin's natural moisture barrier — leaving skin dry, compromised, and vulnerable precisely when it should be recovering.</p>
+      </div>
+      <div class="prob-card reveal d3">
+        <div class="num">03 — Instant restoration</div>
+        <h3>Recovery at the source</h3>
+        <p>Instead of a tedious post-shower lotion routine, infuse deep, nourishing hydration directly into your shower stream. Total skin recovery, the second you step out of the pool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALTERNATING FEATURE BLOCKS -->
+<section style="padding-top:30px;padding-bottom:30px">
+  <div class="wrap">
+
+    <div class="feature reveal">
+      <div class="media"><div class="ph m-ritual"></div></div>
+      <div>
+        <span class="eyebrow">The ritual</span>
+        <h2>An instant ritual, right at the source.</h2>
+        <p>Skip the tedious post-shower lotion chore. SpaSnap™ infuses deep, nourishing hydration directly into your shower stream — so you step out already hydrated, refreshed, and restored.</p>
+      </div>
+    </div>
+
+    <div class="feature flip reveal">
+      <div class="media"><div class="ph m-feeling"></div></div>
+      <div>
+        <span class="eyebrow">The feeling</span>
+        <h2>Spa-grade calm, in any shower.</h2>
+        <p>Rich emollients emulsify into a milky, conditioning mist that coats your whole body. From deep moisture recovery to eucalyptus aromatherapy, every rinse becomes a moment of recovery.</p>
+      </div>
+    </div>
+
+    <div class="feature reveal">
+      <div class="media"><div class="ph m-travel"></div></div>
+      <div>
+        <span class="eyebrow">Anywhere you go</span>
+        <h2>Built for the gym bag and the carry-on.</h2>
+        <p>Smartphone-sized, packable, and quick to dry — with zero plumbing required. Perfect for the gym, the local pool, or a hotel stay, without carrying bulky bottles.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What it is &amp; how it works</span>
+      <h2>The effortless, portable attachment system.</h2>
+      <p>SpaSnap™ is a smartphone-sized, high-grade silicone sleeve that stretches over virtually any commercial shower stem in seconds. Zero plumbing, zero tools.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal d1">
+        <span class="stepnum">1</span>
+        <span class="badge">STEP 1</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6M12 9v6"/></svg></div>
+        <h3>Snap</h3>
+        <p>Slide the solid, water-activated matrix pod into the base pocket.</p>
+      </div>
+      <div class="step reveal d2">
+        <span class="stepnum">2</span>
+        <span class="badge">STEP 2</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 8c3-3 11-3 14 0M5 8v6c0 2 3 4 7 4s7-2 7-4V8"/><path d="M12 18v3"/></svg></div>
+        <h3>Cinch</h3>
+        <p>Stretch the cap over the showerhead and pull the toggle tight around the stem.</p>
+      </div>
+      <div class="step reveal d3">
+        <span class="stepnum">3</span>
+        <span class="badge">STEP 3</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
+        <h3>Renew</h3>
+        <p>Turn on the water and let the conditioning mist restore your skin.</p>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <div class="hl reveal d1">
+        <div class="pin"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <div>
+          <h4>Zero plumbing required</h4>
+          <p>Temporary, completely portable, and installed in seconds. Perfect for the gym, the local pool, or a hotel stay.</p>
+        </div>
+      </div>
+      <div class="hl reveal d2">
+        <div class="pin"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+        <div>
+          <h4>Mess-free travel</h4>
+          <p>Skip the bulky bottles. Its small, packable design dries quickly and frees you from the tedious lotion chore on the go.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="science" id="science">
+  <div class="bg"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The all-in-one recovery pod</span>
+      <h2>Dual-action defense, before you reach for the towel.</h2>
+      <p>At the heart of SpaSnap™ is a concentrated, water-activated matrix that neutralizes threats and rebuilds your protective skin barrier as the water runs.</p>
+    </div>
+    <div class="sci-grid">
+      <div class="sci reveal d1">
+        <div class="big">99%</div>
+        <h3>Neutralizes the chlorine</h3>
+        <p>As water passes through, embedded Vitamin C instantly neutralizes up to 99% of harsh chlorine and bromine — breaking the "chlorine lock" that soap can't touch.</p>
+      </div>
+      <div class="sci reveal d2">
+        <div class="big">+</div>
+        <h3>Rebuilds your skin barrier</h3>
+        <p>Rich emollients like shea butter and nutrient oils emulsify into a milky, conditioning mist that seals micro-cracks and restores moisture.</p>
+      </div>
+      <div class="sci reveal d3">
+        <div class="big">100%</div>
+        <h3>Total body coverage</h3>
+        <p>Carried evenly through the running water, the nutrients coat your entire body — including hard-to-reach areas like your back — rebuilding your defensive barrier everywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODS -->
+<section id="pods">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Choose your ritual</span>
+      <h2>One sleeve. A pod for every mood.</h2>
+      <p>Swap the water-activated pod to match how you want to recover — from deep moisture repair to spa-grade aromatherapy.</p>
+    </div>
+    <div class="pods-grid">
+      <div class="pod p1 reveal d1">
+        <div class="disc"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
+        <h3>Vitamin C &amp; Shea</h3>
+        <p class="sub">Chlorine neutralizer plus deep moisture recovery — the flagship pod for everyday post-swim restoration.</p>
+        <span class="chip">Most popular</span>
+      </div>
+      <div class="pod p2 reveal d2">
+        <div class="disc"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+        <h3>Hands-Free Spray Lotion</h3>
+        <p class="sub">Ultra-light hydration formulated for sensitive skin, misted on hands-free as the water runs.</p>
+        <span class="chip">Sensitive skin</span>
+      </div>
+      <div class="pod p3 reveal d3">
+        <div class="disc"><svg viewBox="0 0 24 24"><path d="M12 22c5-3 8-7 8-12a8 8 0 0 0-16 0c0 5 3 9 8 12z"/><path d="M12 14c2-1 3-3 3-5"/></svg></div>
+        <h3>Eucalyptus Aromatherapy</h3>
+        <p class="sub">Spa-grade stress relief and recharge — turn an ordinary rinse into a moment of calm.</p>
+        <span class="chip">Recharge</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow center reveal">Be first in line</span>
+    <h2 class="reveal d1">Step out of the pool, <em>into recovery.</em></h2>
+    <p class="reveal d2">We're launching soon. Early-access members lock in exclusive launch pricing and get first access to every new pod drop.</p>
+    <a href="#reserve" class="btn btn-primary reveal d3">Reserve my spot
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="logo"><span class="drop"></span>SpaSnap<sup>™</sup></a>
+        <p class="foot-tag">Snap. Cinch. Renew. Premium, restorative, post-swim skincare — universal, portable, and unexpectedly luxurious.</p>
+      </div>
+      <div class="foot-contact">
+        <div class="label">Contact us</div>
+        <a href="mailto:info@spasnap.com">info@spasnap.com</a>
+        <a href="#">@SpaSnapOfficial</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SpaSnap™. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const btn=document.getElementById('resBtn');
+  const email=document.getElementById('resEmail');
+  const field=document.getElementById('resField');
+  const ok=document.getElementById('resOk');
+  btn.addEventListener('click',()=>{
+    const v=email.value.trim();
+    const valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    if(!valid){ email.focus(); field.style.borderColor='var(--coral)'; return; }
+    field.style.display='none';
+    ok.style.display='flex';
+  });
+  email.addEventListener('input',()=>{ field.style.borderColor='rgba(251,248,243,.2)'; });
+  email.addEventListener('keydown',e=>{ if(e.key==='Enter') btn.click(); });
+</script>
+</body>
+</html>
