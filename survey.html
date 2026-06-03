@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaSnap™ — 1-Minute Market Survey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF8F3;--cream-deep:#F2EBE0;--ink:#1C3A35;--ink-soft:#56695F;
+    --aqua:#6FB3AB;--aqua-deep:#3E8F86;--aqua-mist:#D6E9E5;--sand:#E6D5BC;--sand-deep:#C29A6A;
+    --coral:#E0876F;--white:#FFFFFF;
+    --font-display:'Fraunces',Georgia,serif;--font-body:'Hanken Grotesk',-apple-system,sans-serif;
+    --shadow-soft:0 2px 8px rgba(28,58,53,.05),0 18px 50px -18px rgba(28,58,53,.18);
+    --shadow-lift:0 4px 14px rgba(28,58,53,.07),0 30px 70px -25px rgba(28,58,53,.30);
+    --radius:28px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--cream);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .eyebrow{font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--aqua-deep);display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--aqua-deep);opacity:.5}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--font-body);font-weight:600;
+    font-size:.98rem;padding:1.02em 1.9em;border-radius:100px;border:none;cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .3s;letter-spacing:.01em}
+  .btn-primary{background:var(--ink);color:var(--cream);box-shadow:0 10px 30px -10px rgba(28,58,53,.5)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(28,58,53,.55);background:#173129}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(28,58,53,.22)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn svg{transition:transform .35s}.btn:hover svg{transform:translateX(4px)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(14px);background:rgba(251,248,243,.78);
+    border-bottom:1px solid rgba(28,58,53,.07)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+  .logo{font-family:var(--font-display);font-size:1.45rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.4em}
+  .logo .drop{width:14px;height:18px;background:var(--aqua-deep);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;display:inline-block}
+  .logo sup{font-size:.5em;color:var(--aqua-deep);font-family:var(--font-body)}
+  .back{font-size:.93rem;font-weight:500;color:var(--ink-soft);display:inline-flex;align-items:center;gap:.5em;transition:color .25s}
+  .back:hover{color:var(--ink)}
+  .back svg{transition:transform .3s}.back:hover svg{transform:translateX(-3px)}
+
+  /* hero */
+  .s-hero{position:relative;padding:64px 0 26px;overflow:hidden}
+  .s-hero::before{content:"";position:absolute;top:-30%;right:-10%;width:60vw;height:60vw;max-width:680px;max-height:680px;
+    background:radial-gradient(circle at 50% 50%,rgba(111,179,171,.26),rgba(111,179,171,0) 62%);z-index:0}
+  .s-hero .wrap{position:relative;z-index:2;max-width:760px}
+  .s-hero h1{font-size:clamp(2.4rem,5.4vw,3.6rem);margin:20px 0 0}
+  .s-hero h1 em{font-style:italic;color:var(--aqua-deep)}
+  .s-hero p{font-size:1.12rem;color:var(--ink-soft);max-width:34em;margin:20px 0 0}
+  .ministeps{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .ministep{flex:1;min-width:120px;background:var(--white);border:1px solid rgba(28,58,53,.07);border-radius:18px;
+    padding:14px 18px;box-shadow:var(--shadow-soft)}
+  .ministep .n{font-size:.68rem;font-weight:700;letter-spacing:.16em;color:var(--aqua-deep);text-transform:uppercase}
+  .ministep .l{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-top:2px}
+
+  /* survey */
+  .survey-sec{padding:30px 0 90px}
+  .survey{max-width:760px;margin:0 auto}
+  .prog-wrap{margin-bottom:34px}
+  .prog-lbl{font-size:.86rem;color:var(--ink-soft);margin-bottom:10px;font-weight:600;letter-spacing:.02em}
+  .prog-bar{height:4px;background:var(--cream-deep);border-radius:20px;overflow:hidden}
+  .prog-fill{height:100%;width:16%;border-radius:20px;background:linear-gradient(90deg,var(--aqua-deep),var(--aqua));
+    transition:width .45s cubic-bezier(.2,.8,.2,1)}
+
+  .scard{background:var(--white);border:1px solid rgba(28,58,53,.07);border-radius:var(--radius);
+    padding:30px 32px;margin-bottom:18px;box-shadow:var(--shadow-soft)}
+  .qnum{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--aqua-deep)}
+  .q-title{font-family:var(--font-display);font-size:1.42rem;font-weight:500;line-height:1.28;margin:8px 0 6px}
+  .q-sub{font-size:.95rem;color:var(--ink-soft);margin-bottom:20px}
+
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid rgba(28,58,53,.12);
+    border-radius:16px;cursor:pointer;background:var(--cream);font-size:1rem;color:var(--ink);user-select:none;
+    transition:border-color .18s,background .18s,transform .12s}
+  .opt:hover{border-color:var(--aqua);background:var(--white);transform:translateX(3px)}
+  .opt .circ{width:20px;height:20px;border-radius:50%;border:2px solid rgba(28,58,53,.25);flex-shrink:0;
+    position:relative;transition:border-color .18s}
+  .opt.sel{border-color:var(--aqua-deep);background:var(--aqua-mist)}
+  .opt.sel .circ{border-color:var(--aqua-deep)}
+  .opt.sel .circ::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--aqua-deep)}
+  .opt strong{font-weight:600}
+  .opt:focus-visible{outline:2px solid var(--aqua-deep);outline-offset:2px}
+
+  .scale-row{display:flex;gap:10px}
+  .sbtn{flex:1;padding:16px 0;border:1.5px solid rgba(28,58,53,.12);border-radius:14px;background:var(--cream);
+    font-family:var(--font-display);font-size:1.25rem;font-weight:500;color:var(--ink);cursor:pointer;
+    transition:border-color .18s,background .18s,color .18s,transform .12s}
+  .sbtn:hover{border-color:var(--aqua);transform:translateY(-2px)}
+  .sbtn.sel{background:var(--aqua-deep);border-color:var(--aqua-deep);color:var(--white)}
+  .scale-lbl{display:flex;justify-content:space-between;margin-top:12px;font-size:.82rem;color:var(--ink-soft)}
+
+  .submit-btn{width:100%;justify-content:center;margin-top:10px;font-size:1.04rem}
+  .submit-btn:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none;background:var(--ink)}
+
+  /* thank you */
+  .ty{display:none;text-align:center;padding:56px 26px;background:var(--white);border-radius:var(--radius);
+    box-shadow:var(--shadow-soft);border:1px solid rgba(28,58,53,.06)}
+  .ty.show{display:block;animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .ty-icon{width:66px;height:66px;border-radius:50%;background:var(--aqua-mist);display:flex;align-items:center;
+    justify-content:center;margin:0 auto 24px}
+  .ty-icon svg{width:30px;height:30px;stroke:var(--aqua-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .ty h2{font-size:2.1rem;margin-bottom:12px}
+  .ty p{color:var(--ink-soft);max-width:32em;margin:0 auto 28px;font-size:1.05rem}
+  .ty .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* footer */
+  footer{background:var(--ink);color:rgba(251,248,243,.75);padding:60px 0 38px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;
+    border-bottom:1px solid rgba(251,248,243,.14);padding-bottom:34px}
+  footer .logo{color:var(--cream)}footer .logo .drop{background:var(--aqua)}
+  .foot-tag{max-width:24em;margin-top:14px;font-size:.95rem;color:rgba(251,248,243,.6)}
+  .foot-contact{text-align:right}
+  .foot-contact .label{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua);font-weight:600}
+  .foot-contact a{display:block;color:var(--cream);font-size:1.05rem;margin-top:8px;transition:color .25s}
+  .foot-contact a:hover{color:var(--aqua)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:.84rem}
+  .foot-bottom a{color:rgba(251,248,243,.6)}.foot-bottom a:hover{color:var(--cream)}
+
+  /* responsive */
+  @media(max-width:600px){
+    .wrap{padding:0 20px}
+    .s-hero{padding:44px 0 20px}
+    .s-hero h1{font-size:clamp(2rem,8.4vw,2.8rem)}
+    .s-hero p{font-size:1.02rem}
+    .survey-sec{padding:24px 0 64px}
+    .scard{padding:24px 22px}
+    .q-title{font-size:1.28rem}
+    .opt{padding:13px 15px;font-size:.96rem}
+    .sbtn{font-size:1.1rem;padding:14px 0}
+    .scale-row{gap:7px}
+    .ty h2{font-size:1.7rem}
+    .ty .cta-row .btn{width:100%;justify-content:center}
+    .foot-contact{text-align:left}
+    .logo{font-size:1.22rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="drop"></span>SpaSnap<sup>™</sup></a>
+    <a href="index.html" class="back">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      Back to home
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="s-hero">
+  <div class="wrap">
+    <span class="eyebrow">Quick market survey · 1 minute</span>
+    <h1>Help us bring <em>SpaSnap™</em> to life.</h1>
+    <p>We're in our launch phase and building the perfect experience around you. Answer six quick questions to help tailor our launch — and unlock early-bird pricing for early supporters.</p>
+    <div class="ministeps">
+      <div class="ministep"><div class="n">Step 1</div><div class="l">Snap</div></div>
+      <div class="ministep"><div class="n">Step 2</div><div class="l">Cinch</div></div>
+      <div class="ministep"><div class="n">Step 3</div><div class="l">Renew</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- SURVEY -->
+<section class="survey-sec">
+  <div class="wrap">
+    <div class="survey">
+
+      <div id="survey-wrap">
+        <div class="prog-wrap">
+          <p class="prog-lbl" id="prog-lbl" aria-live="polite">Question 1 of 6</p>
+          <div class="prog-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6">
+            <div class="prog-fill" id="prog-fill"></div>
+          </div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="scard">
+          <div class="qnum">Question 1 — Post-swim challenges</div>
+          <div class="q-title">How often do you experience dry skin, itchiness, or a lingering chemical smell after swimming or working out?</div>
+          <p class="q-sub">Select the option that best describes your experience.</p>
+          <div class="opts" role="radiogroup" aria-label="Frequency of post-swim skin issues">
+            <div class="opt" data-q="1" data-v="Always" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Always</div>
+            <div class="opt" data-q="1" data-v="Frequently" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Frequently</div>
+            <div class="opt" data-q="1" data-v="Sometimes" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Sometimes</div>
+            <div class="opt" data-q="1" data-v="Rarely" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Rarely</div>
+            <div class="opt" data-q="1" data-v="Never" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Never</div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="scard">
+          <div class="qnum">Question 2 — The locker room experience</div>
+          <div class="q-title">How annoying is applying body lotion in a gym or public locker room?</div>
+          <p class="q-sub">Rate from 1 (not at all) to 5 (extremely — I often skip it).</p>
+          <div class="scale-row" role="radiogroup" aria-label="Annoyance rating 1 to 5">
+            <button class="sbtn" data-q="2" data-v="1" aria-pressed="false">1</button>
+            <button class="sbtn" data-q="2" data-v="2" aria-pressed="false">2</button>
+            <button class="sbtn" data-q="2" data-v="3" aria-pressed="false">3</button>
+            <button class="sbtn" data-q="2" data-v="4" aria-pressed="false">4</button>
+            <button class="sbtn" data-q="2" data-v="5" aria-pressed="false">5</button>
+          </div>
+          <div class="scale-lbl"><span>Not annoying at all</span><span>Extremely annoying</span></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="scard">
+          <div class="qnum">Question 3 — Concept appeal</div>
+          <div class="q-title">What excites you most about the SpaSnap™ concept?</div>
+          <p class="q-sub">Select your top choice.</p>
+          <div class="opts" role="radiogroup" aria-label="Most appealing feature">
+            <div class="opt" data-q="3" data-v="Chlorine neutralizer" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Instantly neutralizing harsh chlorine and chemical odors right in the shower</div>
+            <div class="opt" data-q="3" data-v="Hands-free moisture" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Skipping the lotion chore with hands-free, deep moisture infusion</div>
+            <div class="opt" data-q="3" data-v="Portable design" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>The small, packable design built for gym bags and travel</div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="scard">
+          <div class="qnum">Question 4 — Pod variations</div>
+          <div class="q-title">Which treatment pod would you use most frequently?</div>
+          <p class="q-sub">Select the pod that appeals most to you.</p>
+          <div class="opts" role="radiogroup" aria-label="Pod preference">
+            <div class="opt" data-q="4" data-v="Vitamin C Shea" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span><span><strong>Vitamin C &amp; Shea</strong> — Chlorine Neutralizer + Deep Moisture Recovery</span></div>
+            <div class="opt" data-q="4" data-v="Spray Lotion" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span><span><strong>Hands-Free Spray Lotion</strong> — Ultra-Light Hydration for Sensitive Skin</span></div>
+            <div class="opt" data-q="4" data-v="Eucalyptus" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span><span><strong>Eucalyptus Aromatherapy</strong> — Spa-Grade Stress Relief &amp; Recharge</span></div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="scard">
+          <div class="qnum">Question 5 — Purchase intent</div>
+          <div class="q-title">How likely are you to purchase a SpaSnap™ starter kit?</div>
+          <p class="q-sub">Includes the device, reusable travel case, and 3 formulation pods.</p>
+          <div class="opts" role="radiogroup" aria-label="Purchase intent">
+            <div class="opt" data-q="5" data-v="Definitely buy" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Definitely would buy</div>
+            <div class="opt" data-q="5" data-v="Probably buy" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Probably would buy</div>
+            <div class="opt" data-q="5" data-v="Unsure" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Might or might not buy</div>
+            <div class="opt" data-q="5" data-v="Probably not" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Probably would not buy</div>
+            <div class="opt" data-q="5" data-v="Definitely not" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>Definitely would not buy</div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="scard">
+          <div class="qnum">Question 6 — Pricing expectation</div>
+          <div class="q-title">What feels like a fair price for the SpaSnap™ Starter Kit?</div>
+          <p class="q-sub">Device + reusable travel case + 3 formulation pods.</p>
+          <div class="opts" role="radiogroup" aria-label="Price expectation">
+            <div class="opt" data-q="6" data-v="$25-$34" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>$25 – $34</div>
+            <div class="opt" data-q="6" data-v="$35-$44" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>$35 – $44</div>
+            <div class="opt" data-q="6" data-v="$45-$54" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>$45 – $54</div>
+            <div class="opt" data-q="6" data-v="$55+" role="radio" aria-checked="false" tabindex="0"><span class="circ"></span>$55 or more</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary submit-btn" id="sub-btn" disabled aria-disabled="true">Submit my feedback</button>
+      </div>
+
+      <!-- THANK YOU -->
+      <div class="ty" id="ty" role="status" aria-live="polite" tabindex="-1">
+        <div class="ty-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2>Thank you!</h2>
+        <p>Your insights help us build the perfect SpaSnap™ experience. We'll be in touch with exclusive pre-launch access and pricing for early supporters.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="index.html">Back to home</a>
+          <a class="btn btn-ghost" href="mailto:info@spasnap.com?subject=SpaSnap%20Survey%20Follow-Up">Contact the team</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="index.html" class="logo"><span class="drop"></span>SpaSnap<sup>™</sup></a>
+        <p class="foot-tag">Snap. Cinch. Renew. Premium, restorative, post-swim skincare — universal, portable, and unexpectedly luxurious.</p>
+      </div>
+      <div class="foot-contact">
+        <div class="label">Contact us</div>
+        <a href="mailto:info@spasnap.com">info@spasnap.com</a>
+        <a href="#">@SpaSnapOfficial</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SpaSnap™. All rights reserved.</span>
+      <span><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const ans = {};
+
+  // radio-style options
+  document.querySelectorAll('.opt').forEach(o=>{
+    o.addEventListener('click',()=>selectOpt(o));
+    o.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectOpt(o); } });
+  });
+  function selectOpt(o){
+    const q=o.dataset.q, v=o.dataset.v;
+    document.querySelectorAll('.opt[data-q="'+q+'"]').forEach(x=>{x.classList.remove('sel');x.setAttribute('aria-checked','false');});
+    o.classList.add('sel'); o.setAttribute('aria-checked','true');
+    ans[q]=v; updateProgress();
+  }
+
+  // 1-5 scale buttons
+  document.querySelectorAll('.sbtn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const q=b.dataset.q, v=b.dataset.v;
+      document.querySelectorAll('.sbtn[data-q="'+q+'"]').forEach(x=>{x.classList.remove('sel');x.setAttribute('aria-pressed','false');});
+      b.classList.add('sel'); b.setAttribute('aria-pressed','true');
+      ans[q]=v; updateProgress();
+    });
+  });
+
+  function updateProgress(){
+    const n=Object.keys(ans).length;
+    const pct=Math.max(16,Math.round(n/6*100));
+    document.getElementById('prog-fill').style.width=pct+'%';
+    document.getElementById('prog-lbl').textContent = n===6 ? 'All questions answered — ready to submit!' : 'Question '+(n+1)+' of 6';
+    const btn=document.getElementById('sub-btn');
+    btn.disabled = n<6;
+    btn.setAttribute('aria-disabled', n<6 ? 'true':'false');
+  }
+
+  document.getElementById('sub-btn').addEventListener('click',()=>{
+    if(Object.keys(ans).length<6) return;
+    // To send responses to a backend, POST `ans` to your endpoint here, e.g.:
+    // fetch('/api/survey',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(ans)});
+    document.getElementById('survey-wrap').style.display='none';
+    const ty=document.getElementById('ty');
+    ty.classList.add('show');
+    ty.focus();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
